@@ -106,8 +106,8 @@
                                 </table>
 
                                 <div class="row">
-                                    <div class="col-md-12 paginate">
-                                        {!! $fumigations->links() !!} 
+                                    <div class="col-md-12 pagination">
+                                        {{ $fumigations->links('pagination::bootstrap-4') }} 
                                     </div>
                                 </div>
                             </div>

@@ -13,7 +13,7 @@ class DemandController extends Controller
     public function index(Request $request)
     {
 
-        $fumigations = Fumigation::where('expires_date', '>=', date('Y-m-d'))->orderBy('cert_no', 'DESC')->get();
+        $fumigations = Fumigation::where('expires_date', '>=', date('Y-m-d'))->orderBy('cert_no', 'DESC')->paginate(20);
     
         return view('demands.index',compact('fumigations'));
     }
