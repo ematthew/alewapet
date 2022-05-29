@@ -85,7 +85,7 @@
                                                 
                                                 @if(date('Y-m-d') == $fumigation->expires_date )
 
-                                                        <a href="{{url('fumigations/view')}}?id={{ $fumigation->id }}" class="text-danger">
+                                                        <a href="{{url('demands/view')}}?id={{ $demands->id }}" class="text-danger">
                                                             Demand Notice 
                                                         </a>
                                                     

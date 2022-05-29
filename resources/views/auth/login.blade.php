@@ -3,7 +3,7 @@
 @section('contents')
 
 <div class="card mb-3">
-  <img src="..." class="card-img-top" alt="...">
+  <img src="{{ asset('img/logo.jpeg') }}" width="100px" height="auto" alt="...">
 
   <div class="container">
     <div style="height: 200px;"></div>

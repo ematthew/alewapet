@@ -66,9 +66,9 @@
                                            <tr>
                                             <td>{{ $demand->name_of_premises }}</td>
                                             <td>{{ $demand->address_of_premises }}</td>
-                                            <td><a href="{{url('fumigations/view')}}?id={{ $demand->id }}" class="text-danger">
-                                                            Demand Notice 
-                                                        </a></td>
+                                            <td><a href="{{url('demands/view')}}?id={{ $demand->id }}" class="text-danger">
+                                                Demand Notice
+                                            </a></td>
                                             <td>{{ $demand->offence }}</td>
                                             <td>{{ $demand->deliver }}</td>
                                             <td>{{ $demand->amount }}</td>

@@ -63,8 +63,8 @@ class DemandController extends Controller
      */
     public function view(Request $request)
     {
-        $demands = Demand::where('id', $request->id)->first();
-        return view('demands.show', compact('demands'));
+        $fumigations = Fumigation::where('id', $request->id)->first();
+        return view('demands.show', compact('fumigations'));
     }
 
     /**
