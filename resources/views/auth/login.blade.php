@@ -3,10 +3,13 @@
 @section('contents')
 
 <div class="card mb-3">
-  <img src="{{ asset('img/logo.jpeg') }}" width="100px" height="auto" alt="...">
+    <center>
 
+        <img src="{{ asset('img/logo.jpeg') }}" width="100px" height="auto" alt="...">
+    
+    </center>
   <div class="container">
-    <div style="height: 200px;"></div>
+    <div style="height: 50px;"></div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -76,7 +79,6 @@
     </div>
 </div>
   
-</div>
 
 @endsection
 
