@@ -127,7 +127,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm col-md-12" onclick="printDiv()">
+                                    <button class="btn btn-outline-primary btn-sm col-md-12" onClick="window.print()">
                                         <i class="fa fa-print"></i> Print or <i class="fa fa-file-pdf"></i> Download PDF
                                     </button>
                                 </div>

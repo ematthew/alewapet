@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Demand;
 use App\Models\Fumigation;
+use App\Models\FumigationCertificate;
 use Illuminate\Http\Request;
 
 class DemandController extends Controller
@@ -13,9 +14,24 @@ class DemandController extends Controller
     public function index(Request $request)
     {
 
+        if($request->has('search_keywords')){
+
+            $search_keywords = $request->search_keywords;
+            $fumigations = Fumigation::where('name_of_premises', 'LIKE', "%$search_keywords%")
+            ->orWhere('phone_no', 'LIKE', "%$search_keywords%")
+            ->orWhere('cert_no', 'LIKE', "%$search_keywords%")
+            ->paginate(10);
+
+        }else{
         $fumigations = Fumigation::where('expires_date', '>=', date('Y-m-d'))->orderBy('cert_no', 'DESC')->paginate(20);
+        // $fumigations = Fumigation::orderBy('name_of_premises', 'DESC')->paginate(10);
+        }
     
         return view('demands.index',compact('fumigations'));
+
+        // $fumigations = Fumigation::where('expires_date', '>=', date('Y-m-d'))->orderBy('cert_no', 'DESC')->paginate(20);
+    
+        // return view('demands.index',compact('fumigations'));
     }
 
     /**
@@ -115,6 +131,16 @@ class DemandController extends Controller
     public function destroy(Fumigation $fumigation)
     {
         //
+    }
+
+    public function fetchSearchByName($name)
+    {
+        $demand = Fumigation::where('name_of_premises','Like',"%$name%")->get();
+
+        return view('search', compact('fumigations'));
+
+        // return FumigationCertificate::where('product_name','Like',"%$name%")->get();
+        
     }
 
 
