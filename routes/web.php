@@ -88,6 +88,7 @@ Route::group(['prefix' => 'demands'], function() {
     Route::get('/edit/{id}',   'DemandController@edit');
     Route::post('/update/{id}',  'DemandController@update');
     Route::delete('/delete',    'DemandController@deleteOne');
+    
 });
 
 

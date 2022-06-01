@@ -127,7 +127,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm col-md-12" onclick="printDiv()">
+                                    <button class="btn btn-outline-primary btn-sm col-md-12" onClick="window.print()">
                                         <i class="fa fa-print"></i> Print or <i class="fa fa-file-pdf"></i> Download PDF
                                     </button>
                                 </div>
@@ -147,6 +147,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
     <script src="{{asset('js/print.min.js')}}"></script>
     <script type="text/javascript">
+        
         function printDiv() {
             $(".print-wrapper").printElement({
                 leaveOpen:true,
@@ -157,6 +158,7 @@
                 }
             });
         }
+
     </script>
 
 
