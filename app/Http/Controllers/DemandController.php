@@ -34,6 +34,29 @@ class DemandController extends Controller
         // return view('demands.index',compact('fumigations'));
     }
 
+    public function createPDF() 
+    {
+      // retreive all records from db
+      $demand = Demand::all();
+
+      // share data to view
+      view()->share('demand',$demand);
+      $pdf = PDF::loadView('pdf_view', $data);
+
+      // download PDF file with download method
+      return $pdf->download('pdf_file.pdf');
+    }
+
+    public function previewAll(Request $request){
+        //body
+
+        $demands_ids = json_decode($request->$demands_ids);
+
+        $demands_ids = Fumigation::whereIn('id', $demands_ids)->orderBy('expires_date', 'DESC')->get();
+        return view('demands.preview', compact('demands'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

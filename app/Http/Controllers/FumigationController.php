@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fumigation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use PDF;
 
 class FumigationController extends Controller
 {
@@ -31,6 +32,20 @@ class FumigationController extends Controller
     
         return view('fumigations.index',compact('fumigations'));
     }
+ // Generate PDF
+    public function createPDF() 
+    {
+      // retreive all records from db
+      $fumigation = Fumigation::all();
+
+      // share data to view
+      view()->share('fumigation',$fumigation);
+      $pdf = PDF::loadView('pdf_view', $data);
+
+      // download PDF file with download method
+      return $pdf->download('pdf_file.pdf');
+    }
+
 
     /**
      * Show the form for creating a new resource.

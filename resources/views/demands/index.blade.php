@@ -107,6 +107,11 @@
                                 </div>
                             </div>                                                            
                             </div>
+                            <div class="row">
+                                <div class="col-md-12 pagination">
+                                    <a href="{{url('demands/preview')}}?fumigations_ids={{ json_encode($fumigations) }}" onclick="previewPrintAll()" class="btn btn-primary col-md-12"> <i class="fa fa-print"></i> print all</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -25,17 +25,17 @@
                         <div class="card-body">
                             <div class="print-wrapper">
                                 <div class="row">
-                                    <div class="col-12"> <p align="center">{{ $fumigations->cert_no }} </p>
-                                        <h1 class="text-success" style="text-align: center; padding: 20px">  <img src=" {{ asset('/img/Coat.svg.png') }}" align="center" width="100px">ABUJA MUNICIPAL AREA COUNCIL<img src=" {{ asset('/img/amac2.png') }}" align="center" width="100px"></h1>
-                                        <p class="text-primary"style="text-align: center;"><b>AREA 10, GARKI ABUJA F.CT P.M.B 64, ABUJA NIGERIA <br>ENVIRONMENTAL SERVICES DEPARTMENT<br>
+                                    <div class="col-12"> <p align="center" style="margin-top:10px;">{{ $fumigations->cert_no }} </p>
+                                        <h1 class="text-success" style="text-align: center; margin-top:10px; padding: 20px">  <img src=" {{ asset('/img/Coat.svg.png') }}" align="center" height="100px">ABUJA MUNICIPAL AREA COUNCIL<img src=" {{ asset('/img/amac2.png') }}" align="center" height="100px"></h1>
+                                        <p class="text-primary"style="text-align: center; margin-bottom:5px;"><b>AREA 10, GARKI ABUJA F.CT P.M.B 64, ABUJA NIGERIA <br>ENVIRONMENTAL SERVICES DEPARTMENT<br>
                                         Tel: 09031408041, 08096773456, 08035874982 </p>
 
-                                        <h1 class="text-danger" style="text-align: center;font-family:book antiqua;font-size: 60px; font-style: italic;"><b>Certificate of Fumigation</b></h1>
+                                        <h1 class="text-danger" style="text-align: center;font-family:book antiqua;font-size: 60px; font-style: italic; margin-top:10px; "><b>Certificate of Fumigation</b></h1>
                                                      
                                     </div>                                         
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12" style="margin-top:60px;">
+                                    <div class="col-md-12">
                                         <div class="row-border" style="color:#000 !important;border: 1px solid #000 !important;">
                                             <table class="table" style="color:#000 !important;">
 
@@ -77,10 +77,12 @@
         Federal Republic of Nigeria 1999.No 20 part 1-5 of AMAC Pest Control Management and Certification bye-law 2012.<br>
                                                      {{ $fumigations->vendors_use }}
         Name of Pest control professional................................................................................<br>
-                EHO|10550                                                                    2022|2023|0150
+                EHO|10550                                                                       2022|2023|0150
         Reg No..................... Signature of EHO................ Professional Licence No.........................<br>
         
-        Issued this...{{ date('d') }}.......... Day of......{{ date('m') }}....{{ date('Y') }}.....20...........dated of Next Fumigation...................... 
+        Issued this...{{ date('d') }}.......... Day of......{{ date('m') }}....{{ date('Y') }}.....20...........dated of Next 
+
+        Fumigation...................... 
                                      </pre>
                                             </b>
                                         </div>
@@ -127,7 +129,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm col-md-12" onClick="window.print()">
+                                    <button class="btn btn-outline-primary btn-sm col-md-12" onclick="printDiv()">
                                         <i class="fa fa-print"></i> Print or <i class="fa fa-file-pdf"></i> Download PDF
                                     </button>
                                 </div>
@@ -147,7 +149,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
     <script src="{{asset('js/print.min.js')}}"></script>
     <script type="text/javascript">
-        
         function printDiv() {
             $(".print-wrapper").printElement({
                 leaveOpen:true,
@@ -157,12 +158,10 @@
                     classNameToAdd : 'row-border'
                 }
             });
+
         }
 
     </script>
-
-
-@section('scripts')
     
 @endsection
 

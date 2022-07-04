@@ -68,6 +68,7 @@ Route::group(['prefix' => 'fumigations'], function() {
     Route::get('/edit/{id}',   'FumigationController@edit');
     Route::post('/update/{id}',  'FumigationController@update');
     Route::delete('/delete', 	'FumigationController@deleteOne');
+    Route::get('/createPDF',  'FumigationController@createPDF')->name('createPDF');
 });
 
 Route::group(['prefix' => 'fumigationcertificates'], function() {
@@ -88,6 +89,8 @@ Route::group(['prefix' => 'demands'], function() {
     Route::get('/edit/{id}',   'DemandController@edit');
     Route::post('/update/{id}',  'DemandController@update');
     Route::delete('/delete',    'DemandController@deleteOne');
+    Route::get('/preview',  'DemandController@previewAll')->name('demands_preview');
+    Route::get('/createPDF',  'DemandController@createPDF')->name('createPDF');
     
 });
 
