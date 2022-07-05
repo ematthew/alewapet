@@ -50,10 +50,10 @@ class DemandController extends Controller
     public function previewAll(Request $request){
         //body
 
-        $demands_ids = json_decode($request->$demands_ids);
+        $fumigations_ids = json_decode($request->$fumigations_ids);
 
-        $demands_ids = Fumigation::whereIn('id', $demands_ids)->orderBy('expires_date', 'DESC')->get();
-        return view('demands.preview', compact('demands'));
+        $fumigations_ids = Fumigation::whereIn('id', $fumigations_ids)->orderBy('expires_date', 'DESC')->get();
+        return view('demands.preview', compact('fumigations'));
     }
 
 
@@ -156,20 +156,15 @@ class DemandController extends Controller
         //
     }
 
-    public function fetchSearchByName($name)
+    public function fetchSearchByName($search_keywords)
     {
-        $demand = Fumigation::where('name_of_premises','Like',"%$name%")->get();
+        $demand = Fumigation::where('name_of_premises','Like',"%$search_keywords%")->get();
 
         return view('search', compact('fumigations'));
 
         // return FumigationCertificate::where('product_name','Like',"%$name%")->get();
         
     }
-
-
-
-
-
 
     //
 }

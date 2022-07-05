@@ -23,7 +23,7 @@
                             
                         <div class="card-body">
                             <div class="print-wrapper">
-                                @foreach ($demands as $demand)
+                                @foreach ($fumigation as $demands)
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">
