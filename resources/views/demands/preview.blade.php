@@ -22,7 +22,7 @@
                         <div class="card-header py-3">
                             
                         <div class="card-body">
-                            <div class="print-wrapper">
+                            <div class="print-wrapper" >
                                 @foreach ($fumigations as $value)
                                 <div class="row">
                                     <div class="col-12">
@@ -140,6 +140,7 @@
                                                    
                                             </div>
                                         </div>
+                                        <p style="page-break-before: always">
                                     @endforeach
                                 </div>
                             </div>
