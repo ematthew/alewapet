@@ -50,9 +50,10 @@ class DemandController extends Controller
     public function previewAll(Request $request){
         //body
 
-        $fumigations_ids = json_decode($request->$fumigations_ids);
+        $fumigations_ids = json_decode($request->fumigations_ids);
 
-        $fumigations_ids = Fumigation::whereIn('id', $fumigations_ids)->orderBy('expires_date', 'DESC')->get();
+        $fumigations = Fumigation::whereIn('id', $fumigations_ids)->orderBy('expires_date', 'DESC')->get();
+
         return view('demands.preview', compact('fumigations'));
     }
 

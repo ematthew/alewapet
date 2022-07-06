@@ -23,7 +23,7 @@
                             
                         <div class="card-body">
                             <div class="print-wrapper">
-                                @foreach ($fumigation as $demands)
+                                @foreach ($fumigations as $value)
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">
@@ -47,11 +47,11 @@
 
                                                 <tr style="border-bottom-style: 3px solid #000 !important;">
                                                     <td style="font-family:tahoma; font-size:18px;"><b>NAME OF PREMISES : </b> </td>
-                                                    <td style="font-family:tahoma; font-size:18px; color: blue;"><b>{{ $fumigations->name_of_premises }}</b></td>
+                                                    <td style="font-family:tahoma; font-size:18px; color: blue;"><b>{{ $value->name_of_premises}}</b></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="font-family:tahoma; font-size:18px;"><b>ADDRESS OF PREMISES:</b>  </td>
-                                                    <td style="font-family:tahoma; font-size:18px; color: blue;"><b>{{ $fumigations->address_of_premises }}</b></td>
+                                                    <td style="font-family:tahoma; font-size:18px; color: blue;"><b>{{ $value->address_of_premises }}</b></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="font-family:sans-serif"><b>TYPE OF PREMISES :</b></td>
