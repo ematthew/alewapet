@@ -6,6 +6,8 @@ use App\Models\Demand;
 use App\Models\Fumigation;
 use App\Models\FumigationCertificate;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class DemandController extends Controller
 {
@@ -13,6 +15,8 @@ class DemandController extends Controller
      
     public function index(Request $request)
     {
+        $date_now = date("Y-d-m");
+        // return $date_now;
 
         if($request->has('search_keywords')){
 
@@ -23,7 +27,7 @@ class DemandController extends Controller
             ->paginate(10);
 
         }else{
-        $fumigations = Fumigation::where('expires_date', '>=', date('Y-m-d'))->orderBy('cert_no', 'DESC')->paginate(20);
+        $fumigations = Fumigation::where('expires_date', '>=', $date_now)->orderBy('cert_no', 'DESC')->paginate(20);
         // $fumigations = Fumigation::orderBy('name_of_premises', 'DESC')->paginate(10);
         }
     
@@ -49,11 +53,10 @@ class DemandController extends Controller
 
     public function previewAll(Request $request){
         //body
-
+        $date_now = date("Y-m-d");
         $fumigations_ids = json_decode($request->fumigations_ids);
 
         $fumigations = Fumigation::whereIn('id', $fumigations_ids)->orderBy('expires_date', 'DESC')->get();
-
         return view('demands.preview', compact('fumigations'));
     }
 
