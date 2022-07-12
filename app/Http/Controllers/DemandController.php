@@ -15,8 +15,8 @@ class DemandController extends Controller
      
     public function index(Request $request)
     {
-        $date_now = date("Y-d-m");
-        // return $date_now;
+        $from = Carbon::now()->format("Y-m-d");
+        $to = Carbon::now()->subDays(365)->format("Y-m-d");
 
         if($request->has('search_keywords')){
 
@@ -24,18 +24,17 @@ class DemandController extends Controller
             $fumigations = Fumigation::where('name_of_premises', 'LIKE', "%$search_keywords%")
             ->orWhere('phone_no', 'LIKE', "%$search_keywords%")
             ->orWhere('cert_no', 'LIKE', "%$search_keywords%")
+            ->whereBetween('expires_date', [$from, $to])
             ->paginate(10);
 
         }else{
-        $fumigations = Fumigation::where('expires_date', '>=', $date_now)->orderBy('cert_no', 'DESC')->paginate(20);
-        // $fumigations = Fumigation::orderBy('name_of_premises', 'DESC')->paginate(10);
-        }
-    
-        return view('demands.index',compact('fumigations'));
 
-        // $fumigations = Fumigation::where('expires_date', '>=', date('Y-m-d'))->orderBy('cert_no', 'DESC')->paginate(20);
+            $fumigations = Fumigation::whereBetween('expires_date', [$to, $from])->orderBy('cert_no', 'DESC')->paginate(20);
+        }
+
+        // $fumigations = Fumigation::whereBetween('expires_date', [$to, $from])->orderBy('cert_no', 'DESC')->count();
     
-        // return view('demands.index',compact('fumigations'));
+        return view('demands.index', compact('fumigations'));
     }
 
     public function createPDF() 

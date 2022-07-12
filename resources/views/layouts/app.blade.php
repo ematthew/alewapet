@@ -104,6 +104,12 @@
                         <a class="collapse-item" href="{{ url('demands') }}">DECONTAMINATION<br> CERTIFICATE</a>
                     </div>
                 </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Payment:</h6>
+                        <a class="collapse-item" href="{{ url('') }}">MAKE PAYMENT</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Divider -->

@@ -83,19 +83,19 @@
                                             </td>
                                             <td>
                                                 
-                                                @if(date('Y-m-d') == $fumigation->expires_date )
+                                                {{-- @if(date('Y-m-d') == $fumigation->expires_date )
 
-                                                        <a href="{{url('demands/view')}}?id={{ $demands->id }}" class="text-danger">
+                                                        <a href="{{url('demands/view')}}?id={{ $fumigation->id }}" class="text-danger">
                                                             Demand Notice 
                                                         </a>
                                                     
-                                                @else
+                                                @else --}}
 
                                                         <a href="{{url('fumigations/view')}}?id={{ $fumigation->id }}" class="text-success">
                                                             Current 
                                                         </a>
                                                
-                                                @endif
+                                                {{-- @endif --}}
                                             </td>
                                             <td> <a href="{{ url('fumigations/edit/'.$fumigation->id) }}"><i class="fa fa-edit"></i>
                                             Edit</a></td>

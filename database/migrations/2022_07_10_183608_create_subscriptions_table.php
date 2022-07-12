@@ -15,7 +15,7 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('fumugation_id');
+            $table->unsignedBigInteger('fumigation_id');
             $table->unsignedBigInteger('user_id');
             $table->decimal('amount');
             $table->date('date_of_fumigation');
@@ -26,7 +26,7 @@ class CreateSubscriptionsTable extends Migration
             $table->date('issue_date');
             $table->date('expires_date');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('fumugation_id')->references('id')->on('fumugations');
+            $table->foreign('fumigation_id')->references('id')->on('fumigations');
             $table->timestamps();
         });
     }

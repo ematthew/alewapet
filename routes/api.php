@@ -19,9 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix' => 'sub'], function() {
+Route::group(['prefix' => 'payment'], function() {
     Route::get('/',             'SubscriptionController@index');
-    Route::post('/',      'SubscriptionController@store');
+    Route::post('/make',      'SubscriptionController@store');
     Route::get('/edit/{id}',   'SubscriptionController@edit');
     Route::post('/update/{id}',  'SubscriptionController@update');
     // Route::delete('/delete',    'SubscriptionController@deleteOne');

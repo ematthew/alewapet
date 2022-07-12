@@ -8,7 +8,7 @@ use App\Models\Subscription;
 use App\Models\Fumigation;
 use App\Models\Demand;
 use App\Models\User;
-
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
@@ -21,6 +21,7 @@ class SubscriptionController extends Controller
     {
         $sub =Subscription::all();
         return $sub;
+        //
     }
 
     /**
@@ -41,12 +42,18 @@ class SubscriptionController extends Controller
      */
     public function store(StoreSubscriptionRequest $request)
     {
-        $SubscriptionRequest = new Subscription($request->all());
-        $SubscriptionRequest->save();
-        return response()->json([
-            "status"=>"success",
-            "data"=>$SubscriptionRequest
-        ]);
+        $Subscription = new Subscription($request->all());
+        $Subscription->save();
+        $fumigation = Fumigation::find($request->fumigation_id);
+        $fumigation->expires_date = Date('y:m:d', strtotime('+90 days'));
+        $fumigation->update;
+        return view('fumigations.create');
+
+        // return response()->json([
+        //     "status"=>"success",
+        //     "data"=>$Subscription
+        // ]);
+        //
     }
 
     /**
@@ -61,6 +68,7 @@ class SubscriptionController extends Controller
             "status"=>"success",
             "data"=>$subscription
         ]);
+        //
     }
 
     /**
