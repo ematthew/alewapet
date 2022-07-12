@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['prefix' => 'sub'], function() {
+    Route::get('/',             'SubscriptionController@index');
+    Route::post('/',      'SubscriptionController@store');
+    Route::get('/edit/{id}',   'SubscriptionController@edit');
+    Route::post('/update/{id}',  'SubscriptionController@update');
+    // Route::delete('/delete',    'SubscriptionController@deleteOne');
+    
+});
