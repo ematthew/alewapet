@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fumigation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 use PDF;
 
 class FumigationController extends Controller
@@ -16,7 +17,8 @@ class FumigationController extends Controller
      */
     public function index(Request $request)
     {
-        // $fumigations = Fumigation::all();
+        $from = Carbon::now()->format("Y-m-d");
+        $to = Carbon::now()->addDays(365)->format("Y-m-d");
 
          if($request->has('search_keywords')){
 
@@ -24,12 +26,16 @@ class FumigationController extends Controller
             $fumigations = Fumigation::where('cert_no', 'LIKE', "%$search_keywords%")
             ->orWhere('phone_no', 'LIKE',"Demand Notice", "%$search_keywords%")
             ->orderBy('cert_no', 'DESC')
+            ->whereBetween('expires_date', [$from, $to])
             ->paginate(10);
 
         }else{
-            $fumigations = Fumigation::orderBy('cert_no', 'DESC')->paginate(20);
+
+            $fumigations = Fumigation::orderBy('cert_no', 'DESC')
+            ->whereBetween('expires_date', [$from, $to])
+            ->paginate(20);
         }
-    
+
         return view('fumigations.index',compact('fumigations'));
     }
  // Generate PDF
