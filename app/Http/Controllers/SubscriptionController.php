@@ -22,6 +22,33 @@ class SubscriptionController extends Controller
 
     public function index(Request $request)
     {
+        $from = Carbon::now()->format("Y-m-d");
+        $to = Carbon::now()->subDays(365)->format("Y-m-d");
+
+         if($request->has('search_keywords')){
+
+            $search_keywords = $request->search_keywords;
+            $fumigations = Fumigation::where('cert_no', 'LIKE', "%$search_keywords%")
+            ->orWhere('phone_no', 'LIKE',"Demand Notice", "%$search_keywords%")
+            ->orWhere('name_of_premises', 'LIKE', "%$search_keywords%")
+            ->orderBy('cert_no', 'DESC')
+            ->whereBetween('expires_date', [$from, $to])
+            ->paginate(10);
+
+        }else{
+            $fumigations = Fumigation::whereBetween('expires_date', [$to, $from])->orderBy('cert_no', 'DESC')->paginate(20);
+
+
+            // $fumigations = Fumigation::orderBy('cert_no', 'DESC')
+            // ->whereBetween('expires_date', [$from, $to])
+            // ->paginate(20);
+        }
+
+        return view('payment.index',compact('fumigations'));
+    }
+
+    public function view(Request $request)
+    {
 
         // $search = Fumigation::where('cert_no','Like',"%$request%")->get();
         // return view('payment.index',compact('search'));

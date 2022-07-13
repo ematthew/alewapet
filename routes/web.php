@@ -112,7 +112,7 @@ Route::group(['prefix' => 'uploadvedor'], function() {
 
 Route::group(['prefix' => 'payments'], function() {
     Route::get('/',             'SubscriptionController@index');
-    Route::post('/',      'SubscriptionController@store');
+    Route::post('/',      'SubscriptionController@store')->name('pay');
     Route::get('/edit/{id}',   'SubscriptionController@edit');
     Route::post('/update/{id}',  'SubscriptionController@update');
     // Route::delete('/delete',    'SubscriptionController@deleteOne');
