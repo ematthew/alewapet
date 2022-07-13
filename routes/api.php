@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'payments'], function() {
-    Route::get('/',             'SubscriptionController@index')->name('api.payments.index');
+    Route::get('/view',             'SubscriptionController@view')->name('api.payments.view');
     Route::post('/',      'SubscriptionController@store')->name('api.payments.store');
     Route::get('/edit/{id}',   'SubscriptionController@edit')->name('api.payments.edit');
     Route::post('/update/{id}',  'SubscriptionController@update')->name('api.payments.update');

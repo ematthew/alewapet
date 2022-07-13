@@ -52,8 +52,9 @@ class SubscriptionController extends Controller
 
         // $search = Fumigation::where('cert_no','Like',"%$request%")->get();
         // return view('payment.index',compact('search'));
-        // $sub = Subscription::all();
-        return view('payment.index');
+        $sub = Subscription::all();
+        return $sub;
+        // return view('payment.index', compact('sub'));
         
     }
 
