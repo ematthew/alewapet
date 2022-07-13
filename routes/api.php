@@ -19,11 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix' => 'payment'], function() {
-    Route::get('/',             'SubscriptionController@index');
-    Route::post('/make',      'SubscriptionController@store');
-    Route::get('/edit/{id}',   'SubscriptionController@edit');
-    Route::post('/update/{id}',  'SubscriptionController@update');
+Route::group(['prefix' => 'payments'], function() {
+    Route::get('/',             'SubscriptionController@index')->name('api.payments.index');
+    Route::post('/',      'SubscriptionController@store')->name('api.payments.store');
+    Route::get('/edit/{id}',   'SubscriptionController@edit')->name('api.payments.edit');
+    Route::post('/update/{id}',  'SubscriptionController@update')->name('api.payments.update');
     // Route::delete('/delete',    'SubscriptionController@deleteOne');
     
 });

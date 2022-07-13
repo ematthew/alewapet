@@ -110,6 +110,17 @@ Route::group(['prefix' => 'uploadvedor'], function() {
     Route::post('/',            'UploadDecontaminationController@upload')->name('upload_file');
 });
 
+Route::group(['prefix' => 'payments'], function() {
+    Route::get('/',             'SubscriptionController@index');
+    Route::post('/',      'SubscriptionController@store');
+    Route::get('/edit/{id}',   'SubscriptionController@edit');
+    Route::post('/update/{id}',  'SubscriptionController@update');
+    // Route::delete('/delete',    'SubscriptionController@deleteOne');
+    
+});
+
+
+
 
 
 

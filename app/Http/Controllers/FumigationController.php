@@ -25,6 +25,7 @@ class FumigationController extends Controller
             $search_keywords = $request->search_keywords;
             $fumigations = Fumigation::where('cert_no', 'LIKE', "%$search_keywords%")
             ->orWhere('phone_no', 'LIKE',"Demand Notice", "%$search_keywords%")
+            ->orWhere('name_of_premises', 'LIKE', "%$search_keywords%")
             ->orderBy('cert_no', 'DESC')
             ->whereBetween('expires_date', [$from, $to])
             ->paginate(10);
