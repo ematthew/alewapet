@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSubscriptionRequest;
 use App\Http\Requests\UpdateSubscriptionRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Subscription;
 use App\Models\Fumigation;
 use App\Models\Demand;
@@ -37,11 +38,6 @@ class SubscriptionController extends Controller
 
         }else{
             $fumigations = Fumigation::whereBetween('expires_date', [$to, $from])->orderBy('cert_no', 'DESC')->paginate(20);
-
-
-            // $fumigations = Fumigation::orderBy('cert_no', 'DESC')
-            // ->whereBetween('expires_date', [$from, $to])
-            // ->paginate(20);
         }
 
         return view('payment.index',compact('fumigations'));
@@ -68,6 +64,23 @@ class SubscriptionController extends Controller
         //
     }
 
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showForm(Request $request)
+    {
+        $fumigation_id = $request->fumigation_id;
+        $fumigations = Fumigation::find($fumigation_id);
+        
+        return view('payment.pay', compact('fumigations'));
+    }
+
+
+    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -76,15 +89,55 @@ class SubscriptionController extends Controller
      */
     public function store(StoreSubscriptionRequest $request)
     {
-        $Subscription = new Subscription($request->all());
-        $Subscription->save();
-        $fumigation = Fumigation::find($request->fumigation_id);
-        $fumigation->expires_date = Date('y:m:d', strtotime('+90 days'));
-        $fumigation->update();
-        return response()->json([
-            "status"=>"success",
-            "data"=>$Subscription
+        $this->validate($request, [
+            'date_of_fumigation'=>'required',
+            'vendors_use'=>'required',
+            'reg_no'=>'required',
+            'cert_no'=>'required',
+            'reference'=>'required',
+            'issue_date'=>'required',
+            'expires_date'=>'required',
+            'amount'=>'required',
+
+
         ]);
+        $Subscription                       =   new Subscription();
+        $Subscription->date_of_fumigation   =   $request->input('date_of_fumigation');
+        $Subscription->vendors_use          =   $request->input('vendors_use');
+        $Subscription->reg_no               =   $request->input('reg_no');
+        $Subscription->cert_no              =   $request->input('cert_no');#rand(10000,99999).Str::random(2);
+        $Subscription->reference            =   $request->input('reference');#Str::random(10);
+        $Subscription->issue_date           =   $request->input('issue_date');#Carbon::now();
+        $Subscription->expires_date         =   Carbon::now()->addDays(90)->format("Y-m-d");
+        $Subscription->amount               =   $request->input('amount');
+        $Subscription->save();
+
+        $fumigation = Fumigation::find($request->fumigation_id);
+        $fumigation->expires_date = Carbon::now()->addDays(90)->format("Y-m-d");
+        $fumigation->update();
+        return $request->all();
+
+        // $Subscription = new Subscription($request->all());
+        
+        // if ($Subscription->save()) {
+        //     $data = [
+        //         "status"    => "success",
+        //         "message"   => "Product uploaded successfully!",
+        //         "data"      => $Subscription
+        //     ];
+        // }
+        // return $data;
+
+
+        // $fumigation = Fumigation::find($request->fumigation_id);
+        // $fumigation->expires_date = Carbon::now()->addDays(90)->format("Y-m-d");
+        // $fumigation->update();
+
+        
+        // return response()->json([
+        //     "status"=>"success",
+        //     "data"=>$Subscription
+        // ]);
         //
     }
 

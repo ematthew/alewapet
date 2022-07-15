@@ -31,7 +31,6 @@ class SubscriptionSeeder extends Seeder
                 'cert_no'=> rand(0,5).Str::random(2),
                 'reference'=> Str::random(10),
                 'issue_date'=> $date_now,
-                // 'expires_date'=> 'issue_date'. strtotime("+90 days"),
                 'expires_date'=> Date('y:m:d', strtotime('+50 days')),
 
             ],

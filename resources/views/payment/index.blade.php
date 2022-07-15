@@ -78,7 +78,7 @@
                                                 <br>
                                             </td>
                                             <td>                                               
-                                                <a href="{{ url('payments/pay') }}" class="text-success">
+                                                <a href="{{ url('payments/show-form') }}?fumigation_id={{ $fumigation->id }}" class="text-success">
                                                     payment 
                                                 </a>
                                             </td>

@@ -11,105 +11,120 @@
 @section('contents')
     <!-- Main Content -->
     <div id="content">
-
         @include('components.navigation')
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container">
+            <center>
+                <div class="row">
+                    <div class="col-lg-12 margin-tb">
+                        <div class="pull-left">
+                            <h2>PAYMENT</h2>
+                        </div>
+                    </div>
+                </div>
+            </center>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                </div>
+            @endif
+            <div class="row">
+                <div class="col-lg-12 margin-tb">
+                    <form action="{{ url('payments/pay') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="fumigation_id" value="{{$fumigations->id}}" />
 
-       {{--      @include('components.topcard') --}}
+                        {{--  <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>FUMIGATION ID:</strong>
+                                <input type="number" name="fumigation_id" class="form-control" value="{{ $fumigations->id }}" placeholder="name_of_premises">
+                            </div>
+                        </div>  --}}
 
-        <div class="row">
-           <div class="col-lg-12 margin-tb">
-              <div class="pull-left">
-                <h2>PAYMENT</h2>
-              </div>
-       </div>
-   
-        @if ($errors->any())
-            <div class="alert alert-danger">
-               <strong>Whoops!</strong> There were some problems with your input.<br><br>
-               <ul>
-                   @foreach ($errors->all() as $error)
-                   <li>{{ $error }}</li>
-                   @endforeach
-               </ul>
+                        {{--  <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>FUNMIGATION ID:</strong>
+                                <option class="form-control" value="fumigation_id">{{$fumigations->id}}</option>
+                            </div>
+                        </div>  --}}
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>NAME OF PREMISES:</strong>
+                                <input type="text" name="name_of_premises" class="form-control" value="{{ $fumigations->name_of_premises }}" placeholder="name_of_premises">
+                            </div>
+                        </div>
+                         <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>ADDRESS OF PREMISES:</strong>
+                                <input type="text" name="address_of_premises" class="form-control" value="{{$fumigations->address_of_premises  }}" placeholder="address_of_premises">
+                            </div>
+                        </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>DATE OF FUMIGATION:</strong>
+                                    <input type="date" name="date_of_fumigation" id='date' class="form-control" value=" " placeholder="y-m-d">
+                                    <script>document.getElementById('date').value</script>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>VENDOR NAME:</strong>
+                                    <input type="text" name="vendors_use" class="form-control" value="{{ $fumigations->vendors_use }}" placeholder="vendors_use">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>REG NO:</strong>
+                                    <input type="number" class="form-control" name="reg_no" id="reg_no">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>CERT NO:</strong>
+                                    <input type="text" class="form-control" name="cert_no" id="cert_no">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>REFERENCE NO:</strong>
+                                    <input type="text" name="reference" class="form-control" id="reference">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>ISSUE DATE:</strong>
+                                    <input type="date" name="issue_date" class="form-control" value="{{ $fumigations->issue_date}}" placeholder="issue_date" id="datepicker">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>EXPIRE DATE:</strong>
+                                    <input type="date" name="expires_date" class="form-control" value="{{$fumigations->expires_date  }}" placeholder="expires_date" id="datepicker" >
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>AMOUNT:</strong>
+                                    <input type="number" name="amount" class="form-control"  value="amount" placeholder="500000">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="ref" value="ref" />
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        @endif
-   
-{{--  <form action="{{ url('payments/pay') }}" method="POST">  --}}
-    @csrf
-  
-     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Machant:</strong>
-                <input type="text" name="name_of_premises" class="form-control" value="{{ $users->name }}">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>NAME OF PREMISES:</strong>
-                <input type="text" name="name_of_premises" class="form-control" value="{{ $fumigations->name_of_premises }}" placeholder="name_of_premises">
-            </div>
-        </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>ADDRESS OF PREMISES:</strong>
-                <input type="text" name="address_of_premises" class="form-control" value="{{$fumigations->address_of_premises  }}" placeholder="address_of_premises">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>PHONE NUMBER:</strong>
-                <input type="text" name="phone_no" class="form-control" value="{{ $fumigations->phone_no }}" placeholder="phone_no">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>DATE OF FUMIGATION:</strong>
-                <input type="date" name="date_of_fumigation" class="form-control" value="{{$fumigations->date_of_fumigation  }}" placeholder="date_of_fumigation">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>VENDOR NAME:</strong>
-                <input type="text" name="vendors_use" class="form-control" value="{{ $fumigations->vendors_use }}" placeholder="vendors_use">
-            </div>
-        </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>CERTIFICATE NO:</strong>
-                <input type="text" name="cert_no" class="form-control" value="{{ $fumigations->cert_no }}" placeholder="cert_no">
-            </div>
-        </div>
-         {{--  <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>ISSUE DATE:</strong>
-                <input type="date" name="issue_date" class="form-control" value="{{ $fumigations->issue_date }}" placeholder="issue_date" id="datepicker">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>EXPIRE DATE:</strong>
-                <input type="date" name="expires_date" class="form-control" value="{{$fumigations->expires_date  }}" placeholder="expires_date" id="datepicker" >
-            </div>
-        </div>  --}}
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Amount:</strong>
-                <input type="number" name="Amount" id="Amount" placeholder="500000">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-   
-</form>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
 @endsection
  {{-- {!! $vendors->links() !!} --}}
 
