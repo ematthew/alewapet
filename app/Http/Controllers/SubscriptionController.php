@@ -89,7 +89,11 @@ class SubscriptionController extends Controller
      */
     public function store(StoreSubscriptionRequest $request)
     {
+        $request['user_id'] = auth()->user()->id;
+        // dd($request->issue_date);
         $this->validate($request, [
+            'fumigation_id'=>'required',
+            'user_id'=>'required',
             'date_of_fumigation'=>'required',
             'vendors_use'=>'required',
             'reg_no'=>'required',
@@ -99,46 +103,39 @@ class SubscriptionController extends Controller
             'expires_date'=>'required',
             'amount'=>'required',
 
-
         ]);
         $Subscription                       =   new Subscription();
+        $Subscription->fumigation_id        =   $request->input('fumigation_id');
+        $Subscription->user_id              =   $request->input('user_id');
         $Subscription->date_of_fumigation   =   $request->input('date_of_fumigation');
         $Subscription->vendors_use          =   $request->input('vendors_use');
-        $Subscription->reg_no               =   $request->input('reg_no');
-        $Subscription->cert_no              =   $request->input('cert_no');#rand(10000,99999).Str::random(2);
-        $Subscription->reference            =   $request->input('reference');#Str::random(10);
-        $Subscription->issue_date           =   $request->input('issue_date');#Carbon::now();
+        $Subscription->reg_no               =   rand(100,900);
+        $Subscription->cert_no              =   rand(10000,99999).Str::random(2);
+        $Subscription->reference            =   Str::random(10);
+        $Subscription->issue_date           =   Carbon::now()->format("Y-m-d");
         $Subscription->expires_date         =   Carbon::now()->addDays(90)->format("Y-m-d");
         $Subscription->amount               =   $request->input('amount');
         $Subscription->save();
 
-        $fumigation = Fumigation::find($request->fumigation_id);
-        $fumigation->expires_date = Carbon::now()->addDays(90)->format("Y-m-d");
-        $fumigation->update();
-        return $request->all();
-
-        // $Subscription = new Subscription($request->all());
-        
-        // if ($Subscription->save()) {
-        //     $data = [
-        //         "status"    => "success",
-        //         "message"   => "Product uploaded successfully!",
-        //         "data"      => $Subscription
-        //     ];
+        // dd($request->expires_date);
+        // $active = Fumigation::find($request->fumigation_id);
+        // $active  = $active->expires_date;
+        // dd($active);
+        // if ($active == Carbon::now()->subDays(90)->format("Y-m-d") ) {
+        //     return 'Subscription Is Still Active';
+        // }else{
+        //     $Subscription->save();
         // }
-        // return $data;
 
 
-        // $fumigation = Fumigation::find($request->fumigation_id);
-        // $fumigation->expires_date = Carbon::now()->addDays(90)->format("Y-m-d");
-        // $fumigation->update();
+        $fumigation                         = Fumigation::find($request->fumigation_id);
+        $fumigation->issue_date             = $Subscription->issue_date;
+        $fumigation->expires_date           = $Subscription->expires_date;
+        $fumigation->cert_no                = $Subscription->cert_no;
+        $fumigation->date_of_fumigation     = $Subscription->date_of_fumigation;
+        $fumigation->update();
 
-        
-        // return response()->json([
-        //     "status"=>"success",
-        //     "data"=>$Subscription
-        // ]);
-        //
+        return redirect()->route('successful');
     }
 
     /**
@@ -196,5 +193,8 @@ class SubscriptionController extends Controller
         // return Products::findorFail($name);
         return $cert_no ;
         
+    }
+    public function successful(){
+        return view('payment.successful');
     }
 }

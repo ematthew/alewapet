@@ -15,8 +15,8 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('fumigation_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('fumigation_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->decimal('amount');
             $table->date('date_of_fumigation');
             $table->string('vendors_use');

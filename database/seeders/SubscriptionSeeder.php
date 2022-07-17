@@ -27,7 +27,7 @@ class SubscriptionSeeder extends Seeder
                 'amount'=> 40000,
                 'date_of_fumigation'=> '2022-08-01',
                 'vendors_use'=> 'MONET CLEANING SERVICES LTD',
-                'reg_no'=> rand(1,9),
+                'reg_no'=> rand(100,900),
                 'cert_no'=> rand(0,5).Str::random(2),
                 'reference'=> Str::random(10),
                 'issue_date'=> $date_now,

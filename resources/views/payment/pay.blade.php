@@ -36,9 +36,15 @@
             @endif
             <div class="row">
                 <div class="col-lg-12 margin-tb">
-                    <form action="{{ url('payments/pay') }}" method="POST">
+                    <form action="{{ route('pay') }}" method="POST">
                         @csrf
                         <input type="hidden" name="fumigation_id" value="{{$fumigations->id}}" />
+                        <input type="hidden" name="expires_date" value="{{$fumigations->expires_date }}" />
+                        <input type="hidden" name="issue_date" value="{{$fumigations->issue_date }}" />
+                        <input type="hidden" name="reg_no" value="reg_no" />
+                        <input type="hidden" name="cert_no" value="cert_no" />
+                        <input type="hidden" name="reference" value="reference" />
+
 
                         {{--  <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
@@ -78,36 +84,36 @@
                                     <input type="text" name="vendors_use" class="form-control" value="{{ $fumigations->vendors_use }}" placeholder="vendors_use">
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-12">
+                            {{--  <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>REG NO:</strong>
                                     <input type="number" class="form-control" name="reg_no" id="reg_no">
                                 </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12">
+                            </div>  --}}
+                            {{--  <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>CERT NO:</strong>
                                     <input type="text" class="form-control" name="cert_no" id="cert_no">
                                 </div>
-                            </div>
-                            <div class="col-sm-12 col-md-12">
+                            </div>  --}}
+                            {{--  <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>REFERENCE NO:</strong>
                                     <input type="text" name="reference" class="form-control" id="reference">
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            </div>  --}}
+                            {{--  <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>ISSUE DATE:</strong>
                                     <input type="date" name="issue_date" class="form-control" value="{{ $fumigations->issue_date}}" placeholder="issue_date" id="datepicker">
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            </div>  --}}
+                            {{--  <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>EXPIRE DATE:</strong>
                                     <input type="date" name="expires_date" class="form-control" value="{{$fumigations->expires_date  }}" placeholder="expires_date" id="datepicker" >
                                 </div>
-                            </div>
+                            </div>  --}}
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>AMOUNT:</strong>
@@ -115,7 +121,6 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" name="ref" value="ref" />
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
