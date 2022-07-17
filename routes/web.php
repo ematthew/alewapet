@@ -116,6 +116,7 @@ Route::group(['prefix' => 'payments'], function() {
     Route::get('/show-form',      'SubscriptionController@showForm');
     Route::post('/pay',      'SubscriptionController@store')->name('pay');
     Route::get('/successful',      'SubscriptionController@successful')->name('successful');
+    Route::get('/receipt',      'SubscriptionController@receipt')->name('receipt');
     Route::get('/edit/{id}',   'SubscriptionController@edit');
     Route::post('/update/{id}',  'SubscriptionController@update');
     // Route::delete('/delete',    'SubscriptionController@deleteOne');

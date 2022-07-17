@@ -197,4 +197,8 @@ class SubscriptionController extends Controller
     public function successful(){
         return view('payment.successful');
     }
+    public function receipt(Request $request){
+        $subscription = Subscription::all();
+        return view('payment.receipt', compact('subscription'));
+    }
 }

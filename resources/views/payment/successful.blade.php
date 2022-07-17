@@ -49,7 +49,8 @@
         </div>
         <h1>Success</h1>
         <p>Payment Has Been Recorded;<br /> Thank You</p> <br>
-        <button class="btn btn-success">Print Recipt</button>
+        <button class="btn btn-success"><a href="{{ route('receipt') }}">VIEW RECEIPT</a></button>
+        {{--  <a href="{{ route('receipt') }}">VIEW RECEIPT</a>  --}}
     </div>
 </body>
 
