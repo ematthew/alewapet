@@ -12,6 +12,7 @@ use App\Models\Demand;
 use App\Models\Receipt;
 use App\Models\User;
 use Carbon\Carbon;
+use Matrix\Operators\Subtraction;
 use PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Payments;
 
 class SubscriptionController extends Controller
@@ -202,10 +203,9 @@ class SubscriptionController extends Controller
         return view('payment.successful');
     }
 
-    public function receipt(Receipt $receipt){
-        return Receipt::all();
-        // $receipt = Subscription::find('user');
-        // dd($subscription);
-        // return view('payment.receipt', compact('subscription'));
+    public function receipt(Receipt $receipt, Request $request){
+        $user = auth()->user()->id;
+        $receipt = Receipt::where('user_id', $user)->get();
+        return view('receipt.index', compact('receipt'));
     }
 }
