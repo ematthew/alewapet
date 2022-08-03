@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Subscription;
 use App\Models\Fumigation;
 use App\Models\Demand;
+use App\Models\Receipt;
 use App\Models\User;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Payments;
@@ -117,15 +118,6 @@ class SubscriptionController extends Controller
         $Subscription->amount               =   $request->input('amount');
         $Subscription->save();
 
-        // dd($request->expires_date);
-        // $active = Fumigation::find($request->fumigation_id);
-        // $active  = $active->expires_date;
-        // dd($active);
-        // if ($active == Carbon::now()->subDays(90)->format("Y-m-d") ) {
-        //     return 'Subscription Is Still Active';
-        // }else{
-        //     $Subscription->save();
-        // }
 
 
         $fumigation                         = Fumigation::find($request->fumigation_id);
@@ -134,6 +126,18 @@ class SubscriptionController extends Controller
         $fumigation->cert_no                = $Subscription->cert_no;
         $fumigation->date_of_fumigation     = $Subscription->date_of_fumigation;
         $fumigation->update();
+
+
+        $reciept                            = new Receipt();
+        $reciept->fumigation_id             = $fumigation->id;
+        $reciept->user_id                   = $request['user_id'];
+        $reciept->amount                    = $Subscription->amount;
+        $reciept->cert_no                   = $Subscription->cert_no;
+        $reciept->issue_date                = $Subscription->issue_date;
+        $reciept->expires_date                = $Subscription->expires_date;
+        // dd($reciept->expires_date );
+
+        $reciept->save();
 
         return redirect()->route('successful');
     }
@@ -197,8 +201,11 @@ class SubscriptionController extends Controller
     public function successful(){
         return view('payment.successful');
     }
-    public function receipt(Request $request){
-        $subscription = Subscription::all();
-        return view('payment.receipt', compact('subscription'));
+
+    public function receipt(Receipt $receipt){
+        return Receipt::all();
+        // $receipt = Subscription::find('user');
+        // dd($subscription);
+        // return view('payment.receipt', compact('subscription'));
     }
 }

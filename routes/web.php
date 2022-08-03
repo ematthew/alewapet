@@ -120,8 +120,13 @@ Route::group(['prefix' => 'payments'], function() {
     Route::get('/edit/{id}',   'SubscriptionController@edit');
     Route::post('/update/{id}',  'SubscriptionController@update');
     // Route::delete('/delete',    'SubscriptionController@deleteOne');
-    
 });
+
+// Route::group(['prefix' => 'receipt'], function() {
+//     Route::get('/', 'ReceiptController@index');
+//     Route::post('/', 'ReceiptController@store');
+//     Route::get('/{id}', 'ReceiptController@show')->name('receipt');
+// });
 
 
 

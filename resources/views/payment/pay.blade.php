@@ -45,20 +45,6 @@
                         <input type="hidden" name="cert_no" value="cert_no" />
                         <input type="hidden" name="reference" value="reference" />
 
-
-                        {{--  <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>FUMIGATION ID:</strong>
-                                <input type="number" name="fumigation_id" class="form-control" value="{{ $fumigations->id }}" placeholder="name_of_premises">
-                            </div>
-                        </div>  --}}
-
-                        {{--  <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>FUNMIGATION ID:</strong>
-                                <option class="form-control" value="fumigation_id">{{$fumigations->id}}</option>
-                            </div>
-                        </div>  --}}
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>NAME OF PREMISES:</strong>
@@ -84,36 +70,6 @@
                                     <input type="text" name="vendors_use" class="form-control" value="{{ $fumigations->vendors_use }}" placeholder="vendors_use">
                                 </div>
                             </div>
-                            {{--  <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>REG NO:</strong>
-                                    <input type="number" class="form-control" name="reg_no" id="reg_no">
-                                </div>
-                            </div>  --}}
-                            {{--  <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>CERT NO:</strong>
-                                    <input type="text" class="form-control" name="cert_no" id="cert_no">
-                                </div>
-                            </div>  --}}
-                            {{--  <div class="col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>REFERENCE NO:</strong>
-                                    <input type="text" name="reference" class="form-control" id="reference">
-                                </div>
-                            </div>  --}}
-                            {{--  <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>ISSUE DATE:</strong>
-                                    <input type="date" name="issue_date" class="form-control" value="{{ $fumigations->issue_date}}" placeholder="issue_date" id="datepicker">
-                                </div>
-                            </div>  --}}
-                            {{--  <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>EXPIRE DATE:</strong>
-                                    <input type="date" name="expires_date" class="form-control" value="{{$fumigations->expires_date  }}" placeholder="expires_date" id="datepicker" >
-                                </div>
-                            </div>  --}}
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>AMOUNT:</strong>

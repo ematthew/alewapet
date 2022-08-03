@@ -27,3 +27,8 @@ Route::group(['prefix' => 'payments'], function() {
     // Route::delete('/delete',    'SubscriptionController@deleteOne');
     
 });
+Route::group(['prefix' => 'receipt'], function() {
+    Route::get('/', 'ReceiptController@index');
+    Route::post('/', 'ReceiptController@store');
+    Route::post('/{id}', 'ReceiptController@show');
+});
