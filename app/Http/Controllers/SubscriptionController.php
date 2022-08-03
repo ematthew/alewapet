@@ -205,7 +205,7 @@ class SubscriptionController extends Controller
 
     public function receipt(Receipt $receipt, Request $request){
         $user = auth()->user()->id;
-        $receipt = Receipt::where('user_id', $user)->get();
+        $receipt = Receipt::where('user_id', $user)->orderBy('id','DESC')->get();
         return view('receipt.index', compact('receipt'));
     }
 }
