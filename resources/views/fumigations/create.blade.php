@@ -59,6 +59,12 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>EHO:</strong>
+                <input type="text" name="eho" class="form-control" placeholder="eho">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>PHONE NUMBER:</strong>
                 <input type="text" name="phone_no" class="form-control" placeholder="phone_no">
             </div>

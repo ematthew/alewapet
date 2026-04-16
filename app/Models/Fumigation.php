@@ -12,6 +12,7 @@ class Fumigation extends Model
     protected $fillable = [       
         "name_of_premises",
         "address_of_premises",
+        "eho",
         "phone_no",
         "date_of_fumigation",
         "vendors_use",

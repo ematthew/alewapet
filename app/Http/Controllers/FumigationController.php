@@ -75,6 +75,7 @@ class FumigationController extends Controller
          $request->validate([
             'name_of_premises' => 'required',
             'address_of_premises' => 'required',
+            'eho' => 'required',
             'phone_no' => 'required',
             'date_of_fumigation' => 'required',
             'vendors_use' => 'required',
@@ -126,6 +127,7 @@ class FumigationController extends Controller
          $fumigation = Fumigation::find($id);
                     $fumigation->name_of_premises      = $request->name_of_premises;
                     $fumigation->address_of_premises   = $request->address_of_premises;
+                    $fumigation->eho                   = $request->eho;
                     $fumigation->phone_no              = $request->phone_no;
                     $fumigation->date_of_fumigation    = $request->date_of_fumigation;
                     $fumigation->vendors_use           = $request->vendors_use;

@@ -53,6 +53,7 @@
                                            
                                             <th>NAME OF PREMISES</th>
                                             <th>ADDRESS OF PREMISES</th>
+                                            <th>EHO</th>
                                             <th>PHONE NUMBER</th>
                                             <th>DATE OF FUMIGATION</th>
                                             <th>VENDOR NAME</th>
@@ -72,6 +73,7 @@
                                            <tr>
                                             <td>{{ $fumigation->name_of_premises }}</td>
                                             <td>{{ $fumigation->address_of_premises }}</td>
+                                            <td>{{ $fumigation->eho }}</td>
                                             <td>{{ $fumigation->phone_no }}</td>
                                             <td>{{ $fumigation->date_of_fumigation }}</td>
                                             <td>{{ $fumigation->vendors_use }}</td>

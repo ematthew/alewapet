@@ -17,6 +17,7 @@ class CreateFumigationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name_of_premises')->nullable();
             $table->string('address_of_premises')->nullable();
+            $table->string('eho')->nullable();
             $table->string('phone_no')->nullable();
             $table->date('date_of_fumigation');
             $table->string('vendors_use')->nullable();
