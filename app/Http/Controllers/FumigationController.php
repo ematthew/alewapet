@@ -39,6 +39,33 @@ class FumigationController extends Controller
 
         return view('fumigations.index',compact('fumigations'));
     }
+
+    public function verifyCertificate(Request $request)
+    {
+        $request->validate([
+            'search_by' => ['required', Rule::in(['cert_no', 'name_of_premises'])],
+            'search_keywords' => ['required', 'string', 'max:255'],
+        ]);
+
+        $search_keywords = $request->search_keywords;
+
+        $fumigations = Fumigation::select(
+                'name_of_premises',
+                'address_of_premises',
+                'phone_no',
+                'cert_no',
+                'issue_date',
+                'expires_date'
+            )
+            ->where($request->search_by, 'LIKE', "%$search_keywords%")
+            ->orderBy('cert_no', 'DESC')
+            ->limit(10)
+            ->get();
+
+        return response()->json([
+            'data' => $fumigations,
+        ]);
+    }
  // Generate PDF
     public function createPDF() 
     {

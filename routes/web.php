@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/verify-certificate', 'FumigationController@verifyCertificate')->name('verify-certificate');
 
 
 
@@ -127,7 +128,6 @@ Route::group(['prefix' => 'payments'], function() {
 //     Route::post('/', 'ReceiptController@store');
 //     Route::get('/{id}', 'ReceiptController@show')->name('receipt');
 // });
-
 
 
 
